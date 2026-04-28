@@ -1,4 +1,11 @@
-/* ============================================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+    <title>Turbo Slick — Ramneet</title>
+    <style>/* ============================================
    Portfolio Styles
    ============================================ */
 
@@ -63,7 +70,6 @@ body {
     background-attachment: fixed;
     background-size: 150% 150%;
     animation: body-breathe 20s ease-in-out infinite alternate;
-    transition: background-color 0.4s ease, color 0.4s ease;
     line-height: 1.6;
     overflow-x: hidden;
 }
@@ -401,21 +407,33 @@ button {
     color: var(--on-surface);
     padding: 10px 24px;
     border-radius: var(--radius-full);
-    background: transparent;
-    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
 }
 
+.nav__link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
 
+.nav__link:hover::after,
+.nav__link--active::after {
+    transform: translateX(100%);
+}
 
 .nav__link:hover,
 .nav__link--active {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.5);
     box-shadow: 0 4px 12px rgba(139, 92, 246, 0.1);
     transform: translateY(-2px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 
@@ -495,7 +513,18 @@ button {
     color: var(--on-surface);
 }
 
+.btn--glass::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
 
+.btn--glass:hover::after {
+    transform: translateX(100%);
+}
 
 .btn--glass:hover {
     box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
@@ -817,19 +846,16 @@ button {
 
 .skill {
     padding: 32px;
-    border-radius: 50px;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-    position: relative;
+    border-radius: 16px;
+    border: 1px solid transparent;
+    transition: background 0.4s ease, border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
 
-.skill:hover,
-.skill.visible:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 15px 35px rgba(132, 85, 239, 0.2);
-}
-
-.skill.reveal {
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+.skill:hover {
+    background: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(107, 56, 212, 0.06);
 }
 
 .skill__title {
@@ -949,20 +975,31 @@ button {
     color: var(--on-surface);
     padding: 10px 24px;
     border-radius: var(--radius-full);
-    background: transparent;
-    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
 }
 
+.footer__social::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
 
+.footer__social:hover::after {
+    transform: translateX(100%);
+}
 
 .footer__social:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.5);
     box-shadow: 0 4px 12px rgba(139, 92, 246, 0.1);
     transform: translateY(-2px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* ============================================
@@ -1082,48 +1119,6 @@ body {
     font-weight: 900;
 }
 
-.about__capsules-wrap {
-    grid-column: span 7;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    align-content: center;
-    padding-right: 60px;
-    z-index: 1;
-}
-
-.project--rev .about__capsules-wrap {
-    grid-column: 6 / -1;
-    grid-row: 1;
-    padding-right: 0;
-    padding-left: 140px;
-}
-
-.about__capsule {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 16px 28px;
-    border-radius: 50px;
-    font-family: var(--font-headline);
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.05em;
-    color: var(--on-surface);
-    text-transform: uppercase;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-}
-
-.about__capsule:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(132, 85, 239, 0.15);
-}
-
-.about__capsule .material-symbols-outlined {
-    color: var(--secondary);
-    font-size: 20px;
-}
-
 .about__content {
     padding: 40px;
     border-radius: var(--radius-xl);
@@ -1162,11 +1157,9 @@ body {
     }
 
     .project__img-wrap,
-    .about__capsules-wrap,
     .project__info {
         grid-column: 1 / -1 !important;
         grid-row: auto !important;
-        padding-left: 0;
     }
 
     .project__info {
@@ -1215,8 +1208,29 @@ body {
         flex-direction: column;
         text-align: center;
     }
-}
-
+}</style>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <style>
+        .rulebook-content h2 { margin-top: 40px; margin-bottom: 20px; font-family: var(--font-headline); font-size: 24px; color: var(--on-surface); text-transform: uppercase; }
+        .rulebook-content h3 { margin-top: 20px; margin-bottom: 12px; font-family: var(--font-headline); font-size: 18px; color: var(--on-surface); text-transform: uppercase; }
+        .rulebook-content p { margin-bottom: 16px; font-size: 16px; line-height: 1.8; color: var(--on-surface-variant); }
+        .rulebook-content ul { padding-left: 20px; line-height: 1.8; margin-bottom: 16px; }
+        .rulebook-content ol { padding-left: 20px; line-height: 1.8; margin-bottom: 16px; }
+        .rulebook-content li { margin-bottom: 8px; font-size: 16px; color: var(--on-surface-variant); }
+        .rulebook-content strong { color: var(--on-surface); font-weight: 700; }
+        /* Clean up any conflicting inline styles */
+        .project__info.rulebook-content {
+            background: rgba(255, 255, 255, 0.4); 
+            backdrop-filter: blur(24px); 
+            -webkit-backdrop-filter: blur(24px); 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            padding: 60px; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+    </style>
+<style>
 /* --- Dark Theme --- */
 :root.dark-theme {
     --surface: #050505;
@@ -1241,8 +1255,16 @@ body {
 body.dark-theme {
     background-color: var(--surface);
     background-image:
-        radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(0, 240, 255, 0.1) 0px, transparent 50%);
+        radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.05) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(0, 240, 255, 0.05) 0px, transparent 50%);
+}
+
+.dark-theme .mono-label {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.dark-theme .rulebook-content p {
+    color: var(--on-surface-variant) !important;
 }
 
 .dark-theme .glass {
@@ -1278,39 +1300,6 @@ body.dark-theme .project__info.rulebook-content {
     background: rgba(30, 30, 35, 0.5) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
-
-/* --- Dark Theme Fixes --- */
-body.dark-theme {
-    background-image:
-        radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.05) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(0, 240, 255, 0.05) 0px, transparent 50%);
-}
-
-.dark-theme .mono-label {
-    color: rgba(255, 255, 255, 0.6) !important;
-}
-
-.dark-theme .tag {
-    background: rgba(30, 30, 35, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.dark-theme .btn--outline {
-    border-color: rgba(255, 255, 255, 0.15) !important;
-    color: var(--on-surface) !important;
-}
-
-.dark-theme .btn--outline:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-body.dark-theme {}
-
-/* Fix rulebook text contrast */
-.dark-theme .rulebook-content p {
-    color: var(--on-surface-variant) !important;
-}
-
 .dark-theme .translucent-box {
     background: rgba(30, 30, 35, 0.5);
     border-color: rgba(255, 255, 255, 0.08);
@@ -1318,26 +1307,491 @@ body.dark-theme {}
 
 
 
-.dark-theme .footer__social {
-    color: var(--on-surface-variant);
-}
-
-.dark-theme .footer__social:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-
 .dark-theme .skill__title {
     color: var(--on-surface);
 }
 
-.dark-theme .skill__desc {
+.dark-theme .skill__desc, .dark-theme .contact__desc {
     color: var(--on-surface-variant);
 }
+</style>
+</head>
+<body>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-circle" id="cursor-circle"></div>
 
-.dark-theme .contact__desc {
-    color: var(--on-surface-variant);
-}
+    <a href="index.html" id="go-back-btn" class="btn btn--glass" style="position: fixed; top: 40px; left: 40px; width: 50px; height: 50px; padding: 0; justify-content: center; z-index: 100; border-radius: 50%; min-width: unset; display: inline-flex; align-items: center;">
+        <span class="material-symbols-outlined" style="margin: 0;">arrow_back</span>
+    </a>
 
-.dark-theme .tech__ambient {
-    background: radial-gradient(circle at center, rgba(139, 92, 246, 0.08) 0%, transparent 60%);
-}
+    <section class="about container" style="padding-top: 120px; padding-bottom: 80px; min-height: 100vh;">
+        <div class="tech__header tech__header--lg reveal">
+            <h1 class="display-xl hero__title">Turbo Slick</h1>
+            <p class="mono-label">Rulebook</p>
+        </div>
+        
+        <div class="reveal reveal-d1" style="display: flex; justify-content: center;">
+            <div class="project__info rulebook-content" style="margin: 0; width: 100%;">
+                <h2>1. Game Overview</h2>
+<p>Welcome to the fast-paced, chaotic world of Turbo Slick: Championship Edition! In this racing game, you'll choose a unique racer, use powerful items, and navigate a treacherous track to outsmart your opponents and become the champion. This isn't just a race of luck; it's a race of skill, strategy, and a little bit of madness!</p>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
+
+<h2>2. Game Components</h2>
+<ul>
+<li>1 Game Board</li>
+<li>2 Six-Sided Dice</li>
+<li>6 Unique Racer Pawns</li>
+<li>6 Racer Profile Cards</li>
+<li>6 Lap Counters</li>
+<li>40 Item Cards</li>
+<li>20 Event Tiles</li>
+<li>1 Position Tracker Board</li>
+<li>12 Sponsor Cards</li>
+<li>30 Mini-Turbo Tokens</li>
+<li>Status Effect Tokens</li>
+</ul>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
+
+<h2>3. Setup</h2>
+<ol>
+<li>Place the Game Board in the center of the table.</li>
+<li>Shuffle the Item Cards and place them face-down to form a deck.</li>
+<li>Each player chooses a Racer and takes the corresponding pawn and profile card.</li>
+<li>Each player is dealt one secret Sponsor Card. Keep it hidden from other players!</li>
+<li>All players place their pawns on the Start/Finish Line (Space 1).</li>
+<li>Decide on the number of laps for the race (e.g., 1 for a Quick Race, 3 for a Standard Race, 5 for a Grand Prix).</li>
+</ol>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
+
+<h2>4. How to Play</h2>
+<p>On your turn, follow these steps:</p>
+<ol>
+<li><strong>Check Status Effects:</strong> If you have any status effects, apply them now.</li>
+<li><strong>Play Items (Optional):</strong> You can play one item from your hand.</li>
+<li><strong>Roll & Move:</strong> Roll two dice and move your pawn forward that many spaces.</li>
+<li><strong>Advanced Movement (Optional):</strong>
+    <ul>
+    <li><strong>Braking:</strong> You can choose to move fewer spaces than you rolled.</li>
+    <li><strong>Drafting:</strong> If you end your turn 3 or fewer spaces behind another player, move forward 2 extra spaces.</li>
+    </ul>
+</li>
+<li><strong>Resolve Space:</strong> Follow the rules of the space you landed on.</li>
+<li><strong>Draw Items:</strong> If you landed on an Item Box, draw one Item Card.</li>
+<li><strong>End Turn:</strong> Your turn is now over. Play passes to the player on your left.</li>
+</ol>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
+
+<h2>5. The Board</h2>
+<ul>
+<li><strong>Start/Finish Line (Space 1):</strong> Where the race begins and ends. Each time you pass this space, you complete a lap.</li>
+<li><strong>Item Boxes:</strong> Land here to draw an Item Card.</li>
+<li><strong>Boost Pads:</strong> Move forward 3-8 spaces.</li>
+<li><strong>Oil Slicks:</strong> Slide back 3-8 spaces.</li>
+<li><strong>Shortcuts:</strong> Bridges that let you jump ahead on the track.</li>
+<li><strong>Hazard Zones:</strong> Dangerous spaces that can cause you to spin out.</li>
+<li><strong>Pit Stop (Space 25):</strong> An optional stop to remove all your debuffs.</li>
+<li><strong>Sharp Corners:</strong> When you land here, roll one die. On a 3+, you're safe. On a 1-2, you get a "Slowed" status effect for one round.</li>
+</ul>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
+
+<h2>6. Racers & Abilities</h2>
+<ul>
+<li><strong>The Daredevil:</strong> Can re-roll one die per turn.</li>
+<li><strong>The Mechanic:</strong> Once per lap, can discard an item to ignore a hazard or debuff.</li>
+<li><strong>The Trickster:</strong> Can place Banana Peels up to 15 spaces ahead instead of 10.</li>
+<li><strong>The Heavyweight:</strong> Is unaffected by "Bomb" items.</li>
+<li><strong>The Speedster:</strong> Has a permanent +1 to their movement rolls.</li>
+<li><strong>The Lucky Star:</strong> Starts the game with a "Shield" item.</li>
+</ul>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
+
+<h2>7. Items</h2>
+<ul>
+<li><strong>Red Shell:</strong> Target a player ahead of you. They roll one less die on their next turn.</li>
+<li><strong>Blue Shell:</strong> A boost for everyone else! All other players move forward 3 spaces.</li>
+<li><strong>Mushroom:</strong> Add 6 to your next movement roll.</li>
+<li>And many more! Discover all the items as you play.</li>
+</ul>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
+
+<h2>8. Status Effects</h2>
+<ul>
+<li><strong>Slowed:</strong> Subtract 2 from all your rolls for 2 turns.</li>
+<li><strong>Confused:</strong> Roll 1 die instead of 2 for your next turn.</li>
+<li><strong>Damaged:</strong> Move backward 2 spaces at the start of each turn (lasts 3 turns).</li>
+<li><strong>Overheated:</strong> Cannot use items for 2 turns.</li>
+</ul>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
+
+<h2>9. Advanced Rules</h2>
+<ul>
+<li><strong>Braking:</strong> A simple but powerful tool. Use it to avoid overshooting a crucial space.</li>
+<li><strong>Drafting:</strong> Stay close to your opponents to get a free speed boost.</li>
+<li><strong>Cornering:</strong> A risk-reward mechanic. Do you risk spinning out for a shorter path?</li>
+</ul>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
+
+<h2>10. Sponsor Cards</h2>
+<p>Your secret Sponsor Card gives you a special mission. If you complete it, reveal the card and claim your reward! This can be a game-changing advantage.</p>
+
+<hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
+
+<h2>11. Winning the Game</h2>
+<p>The first player to complete the designated number of laps and cross the finish line is the winner and the new Turbo Slick Champion!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subtle Particle Network -->
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="bg-orbs" aria-hidden="true">
+        <div class="bg-orbs__orb bg-orbs__orb--purple"></div>
+        <div class="bg-orbs__orb bg-orbs__orb--cyan"></div>
+    </div>
+
+    <button id="back-to-top" class="btn btn--glass">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script>/* ============================================
+   Portfolio Interactions
+   ============================================ */
+
+(function() {
+    'use strict';
+
+    /* ─── CUSTOM CURSOR ─── */
+    const dot = document.getElementById('cursor-dot');
+    const circle = document.getElementById('cursor-circle');
+    let mouseX = 0,
+        mouseY = 0;
+    let dotX = 0,
+        dotY = 0;
+    let circleX = 0,
+        circleY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+        dotX += (mouseX - dotX) * 0.8;
+        dotY += (mouseY - dotY) * 0.8;
+        dot.style.left = dotX + 'px';
+        dot.style.top = dotY + 'px';
+
+        circleX += (dotX - circleX) * 0.15;
+        circleY += (dotY - circleY) * 0.15;
+        circle.style.left = circleX + 'px';
+        circle.style.top = circleY + 'px';
+
+        requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Hover detection for interactive elements
+    const hoverTargets = document.querySelectorAll(
+        'a, button:not(#back-to-top), .btn:not(#back-to-top), .project__img-wrap, .skill, .nav__link, .contact__email'
+    );
+    hoverTargets.forEach((el) => {
+        el.addEventListener('mouseenter', () => {
+            dot.classList.add('hovering');
+            circle.classList.add('hovering');
+        });
+        el.addEventListener('mouseleave', () => {
+            dot.classList.remove('hovering');
+            circle.classList.remove('hovering');
+        });
+    });
+
+
+
+    /* ─── SCROLL REVEAL (IntersectionObserver) ─── */
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        }
+    );
+    reveals.forEach((el) => revealObserver.observe(el));
+
+    /* ─── NAVBAR SCROLL EFFECT ─── */
+    const nav = document.getElementById('main-nav');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+
+        // Nav style
+        if (y > 80) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+
+
+
+        lastScroll = y;
+    }, {
+        passive: true
+    });
+
+    /* ─── SMOOTH SCROLL (LENIS) ─── */
+    let lenis;
+    if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Update smooth scroll for nav links to use Lenis
+        document.querySelectorAll('a[href^="#"]').forEach((link) => {
+            link.addEventListener('click', (e) => {
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    lenis.scrollTo(target);
+                }
+            });
+        });
+    } else {
+        // Fallback if Lenis fails to load
+        document.querySelectorAll('a[href^="#"]').forEach((link) => {
+            link.addEventListener('click', (e) => {
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    }
+
+    /* ─── ACTIVE NAV LINK ON SCROLL ─── */
+    const sections = document.querySelectorAll('section[id], footer[id]');
+    const navLinks = document.querySelectorAll('.nav__link');
+    const linkObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach((l) => l.classList.remove('nav__link--active'));
+                    const active = document.querySelector(
+                        `.nav__link[href="#${entry.target.id}"]`
+                    );
+                    if (active) active.classList.add('nav__link--active');
+                }
+            });
+        }, {
+            threshold: 0.3
+        }
+    );
+    sections.forEach((s) => linkObserver.observe(s));
+
+    /* ─── HERO ORB MOUSE PARALLAX ─── */
+    const heroOrbs = document.querySelectorAll('.bg-orbs__orb');
+    window.addEventListener('mousemove', (e) => {
+        const cx = (e.clientX / window.innerWidth - 0.5) * 2;
+        const cy = (e.clientY / window.innerHeight - 0.5) * 2;
+        heroOrbs.forEach((orb, i) => {
+            const speed = (i + 1) * 18;
+            orb.style.transform = `translate(${cx * speed}px, ${cy * speed}px)`;
+        });
+    }, {
+        passive: true
+    });
+
+
+
+    /* ─── MAGNETIC PULL ON BUTTONS ─── */
+    const magneticEls = document.querySelectorAll('.btn, .nav__link');
+    magneticEls.forEach((el) => {
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const dx = e.clientX - (rect.left + rect.width / 2);
+            const dy = e.clientY - (rect.top + rect.height / 2);
+            el.style.transform = `translate(${dx * 0.2}px, ${dy * 0.2}px)`;
+        });
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = '';
+        });
+    });
+
+    /* ─── SUBTLE TECHNICAL GRID BACKGROUND ─── */
+    const canvas = document.getElementById('bg-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let crosses = [];
+        const spacing = 70;
+        let time = 0;
+
+        const SHAPES = ['circle', 'cross', 'triangle', 'square', 'diamond'];
+
+        function initGrid() {
+            crosses = [];
+            for (let x = 0; x < width + spacing; x += spacing) {
+                for (let y = 0; y < height + spacing; y += spacing) {
+                    crosses.push({
+                        base_x: x,
+                        base_y: y,
+                        shape: SHAPES[Math.floor(Math.random() * SHAPES.length)],
+                        rotation: Math.random() * Math.PI * 2,
+                        rotSpeed: (Math.random() - 0.5) * 0.015
+                    });
+                }
+            }
+        }
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            initGrid();
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function animateGrid() {
+            ctx.clearRect(0, 0, width, height);
+            time += 0.005; // Slower time step
+
+            crosses.forEach(c => {
+                let dx = mouseX - c.base_x;
+                let dy = mouseY - c.base_y;
+                let dist = Math.sqrt(dx * dx + dy * dy);
+
+                let glow = 0;
+                if (dist < 200) {
+                    glow = Math.pow(1 - (dist / 200), 1.5);
+                }
+
+                // Slower gentle wavy movement
+                let waveX = Math.sin(c.base_y * 0.005 + time) * 8;
+                let waveY = Math.cos(c.base_x * 0.005 + time) * 8;
+
+                let finalX = c.base_x + waveX;
+                let finalY = c.base_y + waveY;
+
+                let alpha = 0.06 + (glow * 0.35);
+
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(132, 85, 239, ${alpha})`;
+                ctx.lineWidth = 1.2;
+
+                let size = 4 + (glow * 2);
+                c.rotation += c.rotSpeed;
+
+                ctx.save();
+                ctx.translate(finalX, finalY);
+                ctx.rotate(c.rotation);
+
+                switch (c.shape) {
+                    case 'circle':
+                        ctx.arc(0, 0, size, 0, Math.PI * 2);
+                        break;
+                    case 'cross': // X shape
+                        ctx.moveTo(-size, -size);
+                        ctx.lineTo(size, size);
+                        ctx.moveTo(size, -size);
+                        ctx.lineTo(-size, size);
+                        break;
+                    case 'triangle':
+                        ctx.moveTo(0, -size);
+                        ctx.lineTo(size, size);
+                        ctx.lineTo(-size, size);
+                        ctx.closePath();
+                        break;
+                    case 'square':
+                        ctx.rect(-size, -size, size * 2, size * 2);
+                        break;
+                    case 'diamond':
+                        ctx.moveTo(0, -size * 1.2);
+                        ctx.lineTo(size * 1.2, 0);
+                        ctx.lineTo(0, size * 1.2);
+                        ctx.lineTo(-size * 1.2, 0);
+                        ctx.closePath();
+                        break;
+                }
+
+                ctx.stroke();
+                ctx.restore();
+            });
+            requestAnimationFrame(animateGrid);
+        }
+        animateGrid();
+    }
+
+
+
+
+
+    /* ─── BACK TO TOP BUTTON ─── */
+    const backToTop = document.getElementById('back-to-top');
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 600) {
+                backToTop.style.opacity = '1';
+                backToTop.style.pointerEvents = 'all';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.pointerEvents = 'none';
+            }
+        }, {
+            passive: true
+        });
+
+        backToTop.addEventListener('click', () => {
+            if (lenis) {
+                lenis.scrollTo(0);
+            } else {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
+
+})();
+
+    /* --- THEME TOGGLE --- */
+    // Check local storage for theme
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        document.documentElement.classList.add('dark-theme');
+    }
+</script>
+</body>
+</html>
