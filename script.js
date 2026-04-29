@@ -63,7 +63,7 @@
                 }
             });
         }, {
-            threshold: 0.12,
+            threshold: 0,
             rootMargin: '0px 0px -40px 0px'
         }
     );
@@ -71,19 +71,40 @@
 
     /* ─── NAVBAR SCROLL EFFECT ─── */
     const nav = document.getElementById('main-nav');
+    
+    /* --- MOBILE NAV TOGGLE --- */
+    const navToggle = document.getElementById('nav-toggle');
+    if (navToggle) {
+        navToggle.addEventListener('click', () => {
+            nav.classList.toggle('nav--open');
+        });
+    }
+    
+    // Close mobile nav when clicking a link
+    document.querySelectorAll('.nav__link').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('nav--open');
+        });
+    });
+
     let lastScroll = 0;
 
     window.addEventListener('scroll', () => {
         const y = window.scrollY;
 
-        // Nav style
-        if (y > 80) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
+        if (nav) {
+            // Close mobile nav on scroll
+            if (nav.classList.contains('nav--open')) {
+                nav.classList.remove('nav--open');
+            }
+
+            // Nav style
+            if (y > 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
         }
-
-
 
         lastScroll = y;
     }, {
